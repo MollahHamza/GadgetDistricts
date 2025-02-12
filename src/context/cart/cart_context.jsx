@@ -21,7 +21,7 @@ const initialState = {
   cart: getLocalStorage(),
   total_items: 0,
   total_amount: 0,
-  shipping_fee: 99,
+  shipping_fee: 60,
 }
 
 const CartContext = createContext()
@@ -35,7 +35,7 @@ export const CartProvider = ({ children }) => {
     window.dataLayer.push({
       event: "add_to_cart",
       ecommerce: {
-        currency: "INR",
+        currency: "BDT",
         value: amount * product.price,
         items: [
           {

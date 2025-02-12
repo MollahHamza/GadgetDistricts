@@ -1,9 +1,9 @@
 import React from 'react'
-import Instagram1 from "../assets/instaGram1.webp"
-import Instagram2 from "../assets/instaGram2.webp"
-import Instagram3 from "../assets/instaGram3.webp"
-import Instagram4 from "../assets/instaGram4.webp"
-import Blog3 from "../assets/Blog3.webp"
+import Instagram1 from "../assets/mouse.webp"
+import Instagram2 from "../assets/keyboard.avif"
+import Instagram3 from "../assets/headphonex.jpeg"
+import Instagram4 from "../assets/controller.jpeg"
+import Blog3 from "../assets/pc.jpg"
 
 const Instagram = () => {
   return (
@@ -36,9 +36,15 @@ const Instagram = () => {
         className="h-44 w-full object-cover object-center xl:h-72 xl:w-72"
       />
       <div className="absolute top-1/3 right-1/3">
-        <h4 className="rounded-md bg-white/80 px-12 py-4 text-3xl font-semibold uppercase tracking-widest text-gray-500 xl:px-32 xl:py-6">
-          Instagram
-        </h4>
+        <a
+          href="https://www.instagram.com/gadgets_district_?igsh=MmY2YnJwcWlqdnk1"  // Replace with your Instagram link
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <h4 className="rounded-md bg-white/80 px-12 py-4 text-3xl font-semibold uppercase tracking-widest text-gray-500 xl:px-32 xl:py-6">
+            Instagram
+          </h4>
+        </a>
       </div>
     </section>
   )

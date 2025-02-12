@@ -1,35 +1,44 @@
-import React from 'react'
-import Light1 from "../assets/light1.webp"
-import Light2 from "../assets/light2.webp"
-import { View_button } from "../components"
-const Header = () => {
-  return (
-    <header className="container relative mx-auto flex overflow-hidden bg-[#d2e9e3] px-5 py-14 lg:py-20 xl:h-[28rem] xl:px-28">
-      <div className=" space-y-8 md:w-2/3 md:space-y-16 xl:w-1/2">
-        <div className="space-y-4">
-          <h1 className="text-4xl font-light capitalize leading-[1.2] md:text-5xl">
-            {" "}
-            <span className=" font-medium ">Shoptik</span> Number #1Trusted
-            furniture website.{" "}
-          </h1>
-          <p className="font-medium text-orange-400">
-            coming soon in your door with a huge discount.
-          </p>
-        </div>
-        <View_button title="view now" />
-      </div>
-      <img
-        src={Light2}
-        alt=""
-        className=" absolute -top-16 right-[8rem] hidden w-80 scale-150 transform object-cover object-center  md:-top-5 md:right-[5rem] md:flex xl:-top-10 xl:right-[26rem] xl:w-96 "
-      />
-      <img
-        src={Light1}
-        alt=""
-        className=" absolute -top-32 -right-12 hidden w-80 scale-125 transform object-cover object-center md:-right-20 md:flex xl:-top-36 xl:right-20 xl:mr-28 xl:w-96"
-      />
-    </header>
-  )
-}
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css";
+import React from "react";
+import Slider from "react-slick";
+import Light4 from "../assets/g402.jpg";
+import Light2 from "../assets/z2.png";
+import Light3 from "../assets/joyroom.jpg";
+import Light1 from "../assets/r50i.jpg";
 
-export default Header
+const Header = () => {
+  const settings = {
+    dots: true, // Show navigation dots
+    infinite: true, // Infinite loop of slides
+    speed: 500, // Transition speed
+    slidesToShow: 1, // Show one image at a time
+    slidesToScroll: 1, // Scroll one image at a time
+    autoplay: true, // Automatically slide images
+    autoplaySpeed: 1500, // Autoplay interval in milliseconds
+    arrows: true, // Show next/prev arrows
+  };
+
+  const images = [Light1, Light2, Light3, Light4];
+
+  return (
+    <header className="relative mx-auto bg-white">
+      <Slider {...settings}>
+        {images.map((image, index) => (
+          <div
+            key={index}
+            className="flex justify-center items-center w-full h-[calc(100vw*9/16)] lg:h-[500px]"
+          >
+            <img
+              src={image}
+              alt={`Slide ${index + 1}`}
+              className="w-full h-full object-contain"
+            />
+          </div>
+        ))}
+      </Slider>
+    </header>
+  );
+};
+
+export default Header;

@@ -99,8 +99,7 @@ const AddToCart = ({ product }) => {
         </div>
         {/* Add to cart Buttons */}
         <div className="flex w-full  items-center justify-between xl:justify-start xl:space-x-8">
-          <Link
-            to="/cart"
+          <button
             className={`flex bg-black py-4 px-14 text-sm uppercase tracking-wider text-white hover:bg-primary   `}
             onClick={() => addToCart(id, mainColor, amount, product)}
           >
@@ -109,7 +108,7 @@ const AddToCart = ({ product }) => {
               <BsCart2 className="mr-1 h-4 w-6 " />{" "}
             </span>
             Add to Cart
-          </Link>
+          </button>
         </div>
       </section>
     </>

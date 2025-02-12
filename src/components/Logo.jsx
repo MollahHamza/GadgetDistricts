@@ -1,17 +1,19 @@
-import React from "react"
-import { Link } from "react-router-dom"
+import React from "react";
+import { Link } from "react-router-dom";
+import logo from "./logo.png"; // Import the logo image
 
 const Logo = ({ className }) => {
   return (
     <Link to="/">
-      <h1
-        className={`relative flex  pr-3 font-extrabold tracking-widest  text-black md:text-3xl ${className} `}
-      >
-        Shoptik
-        <span className="absolute right-[5px] bottom-2 h-[6px] w-[6px] bg-primary "></span>
-      </h1>
+      <img
+        src={logo}
+        alt="Logo"
+        width="150"  // Set desired width
+        height="150" // Set desired height
+        className={`relative pr-3 ${className}`}
+      />
     </Link>
-  )
-}
+  );
+};
 
-export default Logo
+export default Logo;

@@ -1,5 +1,5 @@
 import React from 'react'
-import BasketImage from "../assets/basketChair.webp"
+import BasketImage from "../assets/headphone.png"
 import { View_button } from "../components"
 
 const Basket = () => {
@@ -16,7 +16,7 @@ const Basket = () => {
         />
         <h2 className="w-2/3 font-light uppercase tracking-widest md:w-full md:text-2xl xl:text-4xl ">
           {" "}
-          <span className="font-black "> Stylish </span> minimal chair
+          <span className="font-black "> Stylish </span> minimalistic headphone
         </h2>
         <View_button title="view now" />
       </div>

@@ -11,7 +11,7 @@ const CartItems = () => {
     window.dataLayer.push({
       event: "begin_checkout",
       ecommerce: {
-        currency: "INR",
+        currency: "BDT",
         value: total_amount,
         items: cart.map((item) => ({
           item_name: item.name,

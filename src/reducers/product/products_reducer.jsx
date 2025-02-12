@@ -1,4 +1,3 @@
-// Import actions variable
 import {
   SIDEBAR_OPEN,
   SIDEBAR_CLOSE,
@@ -11,66 +10,71 @@ import {
 } from "../../actions/actions"
 
 const products_reducer = (state, action) => {
-  if (action.type === SIDEBAR_OPEN) {
-    return { ...state, isSidebarOpen: true }
-  }
-  if (action.type === SIDEBAR_CLOSE) {
-    return { ...state, isSidebarOpen: false }
-  }
-  //* ================= All Products actions =================
-  if (action.type === GET_PRODUCTS_BEGIN) {
-    return { ...state, products_loading: true }
-  }
-  if (action.type === GET_PRODUCTS_SUCCESS) {
-    const allFeaturedProducts = action.payload.filter(
-      (product) => product.featured === true
-    )
-    const allNewArrivalProducts = action.payload.filter(
-      (product) => product.new_arrival === true
-    )
-    const allBestSeller_products = action.payload.filter(
-      (product) => product.bestseller === true
-    )
-    return {
-      ...state,
-      products_loading: false,
-      products: action.payload,
-      featured_products: allFeaturedProducts,
-      newArrival_products: allNewArrivalProducts,
-      bestSeller_products: allBestSeller_products,
-    }
-  }
-  if (action.type === GET_PRODUCTS_ERROR) {
-    return { ...state, products_loading: false, products_error: true }
-  }
-  //* ================= END =================
+  switch (action.type) {
+    case SIDEBAR_OPEN:
+      return { ...state, isSidebarOpen: true };
 
-  //* ================= Single Product actions =================
+    case SIDEBAR_CLOSE:
+      return { ...state, isSidebarOpen: false };
 
-  if (action.type === GET_SINGLE_PRODUCT_BEGIN) {
-    return {
-      ...state,
-      single_product_error: false,
-      single_product_loading: true,
-    }
-  }
-  if (action.type === GET_SINGLE_PRODUCT_SUCCESS) {
-    return {
-      ...state,
-      single_product_loading: false,
-      singleProduct: action.payload,
-    }
-  }
-  if (action.payload === GET_SINGLE_PRODUCT_ERROR) {
-    return {
-      ...state,
-      single_product_loading: false,
-      single_product_error: true,
-    }
-  }
-  //* ================= END =================
+    case GET_PRODUCTS_BEGIN:
+      return { ...state, products_loading: true };
 
-  throw new Error(`No matching "${action.type}" - action type `)
-}
+    case GET_PRODUCTS_SUCCESS: {
+      // Ensure payload is an array
+      const productsPayload = Array.isArray(action.payload) ? action.payload : [];
 
-export default products_reducer
+      const allFeaturedProducts = productsPayload.filter(
+        (product) => product.featured === true
+      );
+      const allNewArrivalProducts = productsPayload.filter(
+        (product) => product.new_arrival === true
+      );
+      const allBestSeller_products = productsPayload.filter(
+        (product) => product.bestseller === true
+      );
+      const allGamingProducts = productsPayload.filter(
+        (product) => product.gaming === true
+      );
+
+      return {
+        ...state,
+        products_loading: false,
+        products: productsPayload,
+        featured_products: allFeaturedProducts,
+        newArrival_products: allNewArrivalProducts,
+        bestSeller_products: allBestSeller_products,
+        gaming_products: allGamingProducts,
+      };
+    }
+
+    case GET_PRODUCTS_ERROR:
+      return { ...state, products_loading: false, products_error: true };
+
+    case GET_SINGLE_PRODUCT_BEGIN:
+      return {
+        ...state,
+        single_product_error: false,
+        single_product_loading: true,
+      };
+
+    case GET_SINGLE_PRODUCT_SUCCESS:
+      return {
+        ...state,
+        single_product_loading: false,
+        singleProduct: action.payload,
+      };
+
+    case GET_SINGLE_PRODUCT_ERROR:
+      return {
+        ...state,
+        single_product_loading: false,
+        single_product_error: true,
+      };
+
+    default:
+      throw new Error(`No matching "${action.type}" - action type`);
+  }
+};
+
+export default products_reducer;

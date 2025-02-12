@@ -28,6 +28,7 @@ const initialState = {
   featured_products: [],
   newArrival_products: [],
   bestSeller_products: [],
+  gaming_products: [], // Added gaming products
   single_product_loading: false,
   single_product_error: false,
   singleProduct: {},
@@ -77,7 +78,12 @@ export const ProductsProvider = ({ children }) => {
 
   return (
     <ProductsContext.Provider
-      value={{ ...state, openSidebar, closeSidebar, fetchSingleProduct }}
+      value={{ 
+        ...state, 
+        openSidebar, 
+        closeSidebar, 
+        fetchSingleProduct 
+      }}
     >
       {children}
     </ProductsContext.Provider>

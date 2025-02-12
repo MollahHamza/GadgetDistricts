@@ -8,11 +8,11 @@ export default defineConfig({
     react(),
     VitePWA({
       manifest: {
-        name: "Shoptik",
-        short_name: "Shoptik",
+        name: "Gadgets District",
+        short_name: "Gadgets District",
         description:
-          "Find beautifully crafted furniture for your home at Shoptik.",
-        categories: ["shopping"],
+          "All your gadget needs at one place.",
+        categories: ["shopping", "electronics", "gadgets"],
         icons: [
           {
             src: "/android-chrome-192x192.png",
@@ -43,21 +43,21 @@ export default defineConfig({
             sizes: "800x600",
             platform: "android",
             label:
-              "Find beautifully crafted furniture for your home at Shoptik.",
+              "Discover the best gadgets at Gadgets District.",
           },
           {
             src: "https://res.cloudinary.com/die12ywpb/image/upload/v1687669422/screenshot2_se3fi3.png",
             sizes: "1200x800",
             platform: "android",
             label:
-              "Find beautifully crafted furniture for your home at Shoptik.",
+              "Your one-stop shop for all your gadget needs at Gadgets District.",
           },
           {
             src: "https://res.cloudinary.com/die12ywpb/image/upload/v1687669423/screenshot3_crmnwv.png",
             sizes: "800x600",
             platform: "android",
             label:
-              "Find beautifully crafted furniture for your home at Shoptik.",
+              "Find the latest gadgets and electronics at Gadgets District.",
           },
         ],
         theme_color: "#171717",

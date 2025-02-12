@@ -31,7 +31,7 @@ const Completion = () => {
         event: "purchase",
         ecommerce: {
           transaction_id: paymentIntent,
-          currency: "INR",
+          currency: "BDT",
           value: total_amount,
           items: cart.map((item) => ({
             item_name: item.name,

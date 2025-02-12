@@ -14,16 +14,16 @@ export const navLinks = [
     title: "features",
     url: "/features",
   },
-  {
-    id: 4,
-    title: "services",
-    url: "/services",
-  },
-  {
-    id: 5,
-    title: "news",
-    url: "/news",
-  },
+  // {
+  //   id: 4,
+  //   title: "services",
+  //   url: "/services",
+  // },
+  // {
+  //   id: 5,
+  //   title: "news",
+  //   url: "/news",
+  // },
 ]
 
 export const products_url = ".netlify/functions/products"

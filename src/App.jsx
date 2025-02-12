@@ -1,21 +1,23 @@
-import { Navbar, Footer } from "./components"
-import { BrowserRouter, Route, Routes } from "react-router-dom"
+// App.jsx
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Navbar, Footer } from "./components";
+import MobileCartButton from "./components/MobileCartButton"; // Import the MobileCartButton
 import {
   Home,
   Cart,
   Products,
   SingleProduct,
-  Error,
   Checkout,
-  ProtectedRoute,
   Completion,
+  CompletedOrder,
   Features,
   Services,
   News,
-} from "./pages"
-import ReactGA from "react-ga4"
-const measurementID = "G-Y1EV1Q38PH"
-ReactGA.initialize(measurementID)
+  ReturnPolicy,
+  FAQ,
+  Error,
+} from "./pages"; // Import the pages
+
 function App() {
   return (
     <BrowserRouter>
@@ -25,33 +27,20 @@ function App() {
         <Route path="/cart" element={<Cart />} />
         <Route path="/shop" element={<Products />} />
         <Route path="/shop/:id" element={<SingleProduct />} />
-        <Route
-          path="/checkout"
-          element={
-            <ProtectedRoute>
-              {" "}
-              <Checkout />{" "}
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/completion"
-          element={
-            <ProtectedRoute>
-              {" "}
-              <Completion />{" "}
-            </ProtectedRoute>
-          }
-        />
-
+        <Route path="/checkout" element={<Checkout />} />
+        <Route path="/completion" element={<Completion />} />
+        <Route path="/completed-order" element={<CompletedOrder />} />
         <Route path="/features" element={<Features />} />
         <Route path="/services" element={<Services />} />
         <Route path="/news" element={<News />} />
+        <Route path="/returnpolicy" element={<ReturnPolicy />} />
+        <Route path="/faq" element={<FAQ />} />
         <Route path="*" element={<Error />} />
       </Routes>
       <Footer />
+      <MobileCartButton /> {/* Add the MobileCartButton here */}
     </BrowserRouter>
-  )
+  );
 }
 
-export default App
+export default App;

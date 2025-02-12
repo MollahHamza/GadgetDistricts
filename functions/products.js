@@ -1,86 +1,49 @@
-import dotenv from "dotenv"
-dotenv.config()
+import dotenv from "dotenv";
+dotenv.config();
 
-import Airtable from "airtable-node"
+import Airtable from "airtable-node";
 
-const airtable = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY })
-  .base(process.env.AIRTABLE_BASE)
-  .table(process.env.AIRTABLE_TABLE)
+const airtable = new Airtable({
+  apiKey: process.env.AIRTABLE_PERSONAL_ACCESS_TOKEN,
+  base: process.env.AIRTABLE_BASE,
+  table: process.env.AIRTABLE_TABLE
+});
 
-
-exports.handler = async () => {
+// Convert to ES module export
+export const handler = async () => {
   try {
-    const response = await airtable.list({ maxRecords: 100 })
+    const response = await airtable.list({ maxRecords: 100 });
 
-    const products = response.records.map((product) => {
-      const { id, fields } = product
-      const {
-        weight,
-        price,
-        most_popular,
-        bestseller,
-        material,
-        stock,
-        new_arrival,
-        designer,
-        company,
-        hot_collection,
-        colors,
-        category,
-        description,
-        reviews,
-        stars,
-        name,
-        notes,
-        featured,
-        sale,
-        trending,
-        shipping,
-        origin,
-        images,
-        exclusive,
-        new_in_market,
-      } = fields
-      const { url } = images[0]
+    if (!response.records) {
       return {
-        id,
-        weight,
-        price,
-        most_popular,
-        bestseller,
-        material,
-        stock,
-        new_arrival,
-        designer,
-        company,
-        hot_collection,
-        colors,
-        category,
-        description,
-        reviews,
-        stars,
-        name,
-        notes,
-        featured,
-        sale,
-        trending,
-        shipping,
-        origin,
-        image: url,
-        images,
-        exclusive,
-        new_in_market,
-      }
-    })
+        statusCode: 500,
+        body: JSON.stringify({ error: 'No records found in Airtable.' }),
+      };
+    }
+
+    // Filter out records with empty fields
+    const products = response.records
+      .filter(product => Object.keys(product.fields).length > 0)
+      .map((product) => {
+        const { id, fields } = product;
+        return {
+          id,
+          ...fields,
+          image: fields.images?.[0]?.url || null,
+        };
+      });
+
     return {
       statusCode: 200,
+      headers: {
+        'Content-Type': 'application/json',
+      },
       body: JSON.stringify(products),
-    }
+    };
   } catch (error) {
-    console.log(error)
     return {
       statusCode: 500,
-      body: "There was an error",
-    }
+      body: JSON.stringify({ error: error.message }),
+    };
   }
-}
+};

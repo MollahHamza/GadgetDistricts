@@ -10,7 +10,7 @@ module.exports = {
     },
     extend: {
       colors: {
-        primary: "#48c4a0",
+        primary: "#FFA500", // Custom orange color
       },
     },
   },

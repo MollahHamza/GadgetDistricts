@@ -1,9 +1,10 @@
-import React from "react"
+import React, { useState } from "react"
 import { useFilterContext } from "../context/filter/filter_context"
 import { formatPrice, getUniqueValues } from "../utils/helper"
-import { BsSearch, BsCheck } from "react-icons/bs"
+import { BsSearch, BsCheck, BsChevronDown } from "react-icons/bs"
 
 const Filters = () => {
+  const [isColorDropdownOpen, setIsColorDropdownOpen] = useState(false);
   const {
     filters: {
       category,
@@ -25,9 +26,9 @@ const Filters = () => {
   const colors = getUniqueValues(all_products, "colors")
 
   return (
-    <aside className=" sticky top-0  hidden h-full w-1/3 flex-col space-y-8 border p-8 font-light  lg:flex      ">
+    <aside className="sticky top-0 hidden h-full w-1/3 flex-col space-y-8 border p-8 font-light lg:flex">
       <div className="flex justify-between">
-        <h2 className="text-2xl uppercase ">Filter by</h2>
+        <h2 className="text-2xl uppercase">Filter by</h2>
         <button
           className="text-sm capitalize text-primary"
           onClick={clearFilters}
@@ -42,26 +43,26 @@ const Filters = () => {
           type="text"
           name="text"
           placeholder="Search product..."
-          className=" w-full rounded-md border-gray-200  ring-0 focus:border-primary focus:ring-0  "
+          className="w-full rounded-md border-gray-200 ring-0 focus:border-primary focus:ring-0"
           value={text}
           onChange={updateFilters}
         />
-        <BsSearch className=" pointer-events-none absolute top-3 right-0 mr-5 h-4 w-4 " />
+        <BsSearch className="pointer-events-none absolute top-3 right-0 mr-5 h-4 w-4" />
       </div>
 
       {/* Categories */}
-      <div className=" space-y-2 ">
-        <h2 className=" font-medium capitalize tracking-wider">Categories</h2>
+      <div className="space-y-2">
+        <h2 className="font-medium capitalize tracking-wider">Categories</h2>
         {categories.map((categoryButton, index) => {
           return (
-            <div className="flex " key={index}>
+            <div className="flex" key={index}>
               <button
                 name="category"
                 id="category"
                 onClick={updateFilters}
                 className={`text-lg capitalize ${
                   category === categoryButton ? "text-primary" : null
-                } `}
+                }`}
               >
                 {categoryButton}
               </button>
@@ -70,66 +71,82 @@ const Filters = () => {
         })}
       </div>
 
-      {/* company / Brand */}
-      <div className=" space-y-2 ">
-        <h2 className=" font-medium capitalize tracking-wider">Brand</h2>
+      {/* Company / Brand */}
+      <div className="space-y-2">
+        <h2 className="font-medium capitalize tracking-wider">Brand</h2>
         <select
           name="company"
           value={company}
           onChange={updateFilters}
-          className=" rounded-md border-gray-200 capitalize focus:border-primary focus:ring-0  "
+          className="rounded-md border-gray-200 capitalize focus:border-primary focus:ring-0"
         >
           {companies.map((companyOption, index) => {
             return (
               <option
                 key={index}
                 value={companyOption}
-                className=" capitalize  "
+                className="capitalize"
               >
-                {" "}
-                {companyOption}{" "}
+                {companyOption}
               </option>
             )
           })}
         </select>
       </div>
 
-      {/* Colors */}
-      <div className=" space-y-2 ">
-        <h2 className=" font-medium capitalize tracking-wider">Colors</h2>
-        <div className=" flex space-x-4 ">
-          {colors.map((colorButton, index) => {
-            if (colorButton === "all") {
-              return (
+      {/* Colors Dropdown */}
+      <div className="space-y-2 relative">
+        <h2 className="font-medium capitalize tracking-wider">Colors</h2>
+        <div className="relative">
+          <button 
+            onClick={() => setIsColorDropdownOpen(!isColorDropdownOpen)}
+            className="w-full flex justify-between items-center rounded-md border border-gray-200 p-2 text-left"
+          >
+            <span className="flex items-center">
+              {color === 'all' ? 'All Colors' : (
+                <>
+                  <span 
+                    className="inline-block w-6 h-6 mr-2 rounded-full" 
+                    style={{ background: color }}
+                  />
+                  {color}
+                </>
+              )}
+            </span>
+            <BsChevronDown className={`transform transition-transform ${isColorDropdownOpen ? 'rotate-180' : ''}`} />
+          </button>
+          
+          {isColorDropdownOpen && (
+            <div className="absolute z-10 w-full mt-1 bg-white border border-gray-200 rounded-md shadow-lg max-h-60 overflow-y-auto">
+              {colors.map((colorOption, index) => (
                 <button
                   key={index}
                   name="color"
-                  data-color="all"
-                  className={` ${
-                    color === colorButton ? " border-b-2 border-primary " : null
-                  } `}
-                  onClick={updateFilters}
+                  data-color={colorOption}
+                  onClick={(e) => {
+                    updateFilters(e);
+                    setIsColorDropdownOpen(false);
+                  }}
+                  className="w-full text-left p-2 hover:bg-gray-100 flex items-center"
                 >
-                  {" "}
-                  All{" "}
+                  {colorOption === 'all' ? (
+                    <span>All</span>
+                  ) : (
+                    <>
+                      <span 
+                        className="inline-block w-6 h-6 mr-2 rounded-full" 
+                        style={{ background: colorOption }}
+                      />
+                      {colorOption}
+                      {color === colorOption && (
+                        <BsCheck className="ml-auto text-primary" />
+                      )}
+                    </>
+                  )}
                 </button>
-              )
-            }
-            return (
-              <button
-                key={index}
-                name="color"
-                data-color={colorButton}
-                style={{ background: colorButton }}
-                className=" h-6 w-6 border-2 border-gray-300  "
-                onClick={updateFilters}
-              >
-                {color === colorButton ? (
-                  <BsCheck className=" h-5 w-5 text-white " />
-                ) : null}
-              </button>
-            )
-          })}
+              ))}
+            </div>
+          )}
         </div>
       </div>
 
@@ -150,27 +167,26 @@ const Filters = () => {
           min={min_price}
           max={max_price}
           value={price}
-          className=" w-full py-2 "
+          className="w-full py-2"
         />
-        <p className="text-end"> {formatPrice(price)} </p>
+        <p className="text-end">{formatPrice(price)}</p>
       </div>
 
       {/* Shipping */}
-      <div className="group flex items-center space-x-5 capitalize ">
+      <div className="group flex items-center space-x-5 capitalize">
         <input
           type="checkbox"
           name="shipping"
           id="shipping"
           checked={shipping}
-          className=" h-4  w-4 cursor-pointer rounded outline-none focus:outline-none focus:ring-0   "
+          className="h-4 w-4 cursor-pointer rounded outline-none focus:outline-none focus:ring-0"
           onChange={updateFilters}
         />
         <label
           htmlFor="shipping"
-          className="  cursor-pointer select-none py-2 transition-all duration-200 ease-linear group-hover:text-primary "
+          className="cursor-pointer select-none py-2 transition-all duration-200 ease-linear group-hover:text-primary"
         >
-          {" "}
-          shipping{" "}
+          shipping
         </label>
       </div>
     </aside>
