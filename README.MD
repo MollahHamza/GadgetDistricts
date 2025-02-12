@@ -1,4 +1,4 @@
-![Logo](https://res.cloudinary.com/die12ywpb/image/upload/v1677599870/Minimalist_Brown_Music_Logo_Instagram_f_h0utlr.png)
+
 
 # Gadgets District - Electronics & Gadgets eCommerce Web App
 Gadgets District is a full-stack eCommerce project designed to sell the latest gadgets and electronics online. The project uses modern technologies to provide an engaging user interface and a seamless shopping experience. The frontend of the project was developed using React, Context API, and React Router. Stripe was integrated as the payment gateway, and user authentication and authorization were implemented using Auth0.
