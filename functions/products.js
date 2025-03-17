@@ -12,7 +12,7 @@ const airtable = new Airtable({
 // Convert to ES module export
 export const handler = async () => {
   try {
-    const response = await airtable.list({ maxRecords: 100 });
+    const response = await airtable.list({ maxRecords: 1000 });
 
     if (!response.records) {
       return {

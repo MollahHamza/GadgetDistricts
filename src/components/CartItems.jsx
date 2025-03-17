@@ -70,10 +70,16 @@ const CartItems = () => {
                       </span>{" "}
                     </p>
                     {/* Price */}
-                    <p className="font-sans font-semibold  md:hidden ">
-                      {" "}
-                      {formatPrice(price)}{" "}
-                    </p>
+                    <div className="space-y-1">
+                      {item.before_discount_price && item.before_discount_price > price && (
+                        <p className="font-light line-through text-gray-500">
+                          {formatPrice(item.before_discount_price)}
+                        </p>
+                      )}
+                      <p className="font-sans font-semibold  md:hidden ">
+                        {formatPrice(price)}
+                      </p>
+                    </div>
                     {/* Quantity */}
                     <div className=" flex items-center space-x-4 py-2 md:hidden ">
                       <button
@@ -129,9 +135,14 @@ const CartItems = () => {
                 </button>
               </div>
               {/* Price */}
-              <p className="hidden items-center justify-end text-right md:flex">
-                {formatPrice(price)}
-              </p>
+              <div className="hidden space-y-1 items-center justify-end text-right md:flex flex-col">
+                {item.before_discount_price && item.before_discount_price > price && (
+                  <p className="font-light line-through text-gray-500">
+                    {formatPrice(item.before_discount_price)}
+                  </p>
+                )}
+                <p>{formatPrice(price)}</p>
+              </div>
               {/* Total */}
               <p className=" hidden items-center justify-end text-right font-medium md:flex">
                 {formatPrice(price * amount)}
