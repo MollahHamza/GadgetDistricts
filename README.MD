@@ -30,11 +30,6 @@ For data storage, Airtable was used as a scalable and efficient database solutio
 
 You can access the live version of Gadgets District by following this link [Gadgets District](https://gadgets-district.netlify.app)
 
-## Screenshots
-
-**Desktop**
-
-![App Screenshot](https://res.cloudinary.com/die12ywpb/image/upload/v1677599343/screencapture-shoptik-netlify-app-2023-02-28-21_14_57_io0yvv.png)
 
 ## Lessons Learned
 
@@ -83,10 +78,3 @@ Please let us know your thoughts on my app by sending any suggestions or feedbac
 - Passionate about building user-friendly and efficient applications using cutting-edge technologies
 - Always eager to learn new technologies and improve skills to provide the best solutions to clients.
 
-## 🔗 Links
-
-[![portfolio](https://img.shields.io/badge/my_portfolio-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://themodernmonk7.vercel.app)
-[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/themodernmonk7)
-[![twitter](https://img.shields.io/badge/twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://twitter.com/themodernmonk7)
-[![Peerlist](https://github-readme-badge.peerlist.io/api/themodernmonk7?style=social)](https://peerlist.io/themodernmonk7)
-s
